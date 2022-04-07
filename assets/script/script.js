@@ -18,3 +18,27 @@ setInterval(() => {
 // THEN the text for that event is saved in local storage
 // WHEN I refresh the page
 // THEN the saved events persist
+
+
+{/* <div class="block border-0" id="9am">9am</div>
+<div class="block" id="10am">10am</div>
+<div class="block" id="11am">11am</div>
+<div class="block" id="12pm">12pm</div>
+<div class="block" id="1pm">1pm</div>
+<div class="block" id="2pm">2pam</div>
+<div class="block" id="3pm">3pm</div>
+<div class="block" id="4pm">4pm</div>
+<div class="block" id="5pm">5pm</div> */}
+
+{/* <div class="card" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">An item</li>
+          <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A third item</li>
+        </ul> */}
