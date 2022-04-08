@@ -1,6 +1,4 @@
-// GIVEN I am using a daily planner to create a schedule
-// WHEN I open the planner
-// THEN the current day is displayed at the top of the calendar
+//moment used to get current time
 var time 
 
 setInterval(() => {
@@ -8,106 +6,39 @@ setInterval(() => {
     $('#currentDay').text("Today is " + time);
     console.log(time)
 }, 1000);
-// WHEN I scroll down
-// THEN I am presented with timeblocks for standard business hours
-var taskInput = $('#task')
-  
-var taskDisplay = function(str) {
-  for (var i = 0; i < 10; i++) {
-    var task = $('<div>')
-    task.addClass("row time-block")
-    task.attr('id', i)
-
-  }
-  columnCard.att('id', i)
-  task.append(taskInput)
-
+//function to run at click of save button
+$(document).ready(function() {
+$('.saveBtn').on('click', function() {
+const blockText = $(this).siblings('.text').val(); //calls on text value of class text
+var blockTime = $(this).parent().attr('id'); //calls on the time id of the text value
+localStorage.setItem(blockTime, blockText); //stores both values to local storage
+})
+function colorChanges() { //function to change colors
+    const momentTime = moment().hours(); //calls on the current time of day
+    $('.time-block').each(function() { //a function that applies to all with a class of time-block
+        var myBlockTime = parseInt($(this).attr('id').split('-')[1]); //id is being split and the variable is the value of the number hour
+        if(myBlockTime > momentTime) { //compares the id hour to the current hour
+            $(this).addClass('past') //class to be added if true; this will add styling
+        } else if (myBlockTime == momentTime) {
+            $(this).removeClass('past') //elseif remove the class and add the class of present
+            $(this).addClass('present')
+        } else { //otherwise remove the current classes and replace with future
+            $(this).removeClass('past')
+            $(this).removeClass('present')
+            $(this).addClass('future')
+         }
+    })
 }
-
-
-// WHEN I view the timeblocks for that day
-// THEN each timeblock is color coded to indicate whether it is in the past, present, or future
-// WHEN I click into a timeblock
-// THEN I can enter an event
-// WHEN I click the save button for that timeblock
-// THEN the text for that event is saved in local storage
-var textInputValue1 = document.getElementById('9am')
-var textInputValue2 = document.getElementById('10am')
-var textInputValue3 = document.getElementById('11am')
-var textInputValue4 = document.getElementById('12pm')
-var textInputValue5 = document.getElementById('1pm')
-var textInputValue6 = document.getElementById('2pm')
-var textInputValue7 = document.getElementById('3pm')
-var textInputValue8 = document.getElementById('4pm')
-var textInputValue9 = document.getElementById('5pm')
-
-saveBtn.addEventListener("click", function(event) {
-	event.preventDefault();
-
-var dateInfo = {
-  hour1: textInputValue1.value,
-  hour2: textInputValue2.value,
-  hour3: textInputValue3.value,
-  hour4: textInputValue4.value,
-  hour5: textInputValue5.value,
-  hour6: textInputValue6.value,
-  hour7: textInputValue7.value,
-  hour8: textInputValue8.value,
-  hour9: textInputValue9.value,
-
-}
-
-localStorage.setItem('dailyTaskStringify', JSON.stringify(dateInfo));
-localStorage.setItem('daily-task', dateInfo)
-
-localStorage.setItem("ArrayStringify", JSON.stringify(["dailyTask", 1,2 ]));
-	localStorage.setItem("Array", ["dailyTask", 1,2 ]);
-
-	renderMessage();
-
-});
-// WHEN I refresh the page
-// THEN the saved events persist
-function renderMessage() {
- 
-	//Object Getting
-  var lastTask = JSON.parse(localStorage.getItem("dailyTaskStringify"));
-  // var lastGrade = localStorage.getItem("studentGrade");
-  
-  //Array Getting
-  var arr = JSON.parse(localStorage.getItem("ArrayStringify"));
-  console.log(arr[0])//"studentGrade" Beacause ["studentGrade", 1,2 ]
-
-  var arrStr = localStorage.getItem("Array");
-  // arrStr = "studentGrade,1,2"
-  
-  console.log(arrStr[0])//s Beacuse "studentGrade,1,2"
-  if (lastTask !== null) {
-    document.querySelector(".message").textContent = lastTask
-  }
-}
-
-
-
-{/* <div class="block border-0" id="9am">9am</div>
-<div class="block" id="10am">10am</div>
-<div class="block" id="11am">11am</div>
-<div class="block" id="12pm">12pm</div>
-<div class="block" id="1pm">1pm</div>
-<div class="block" id="2pm">2pam</div>
-<div class="block" id="3pm">3pm</div>
-<div class="block" id="4pm">4pm</div>
-<div class="block" id="5pm">5pm</div> */}
-
-{/* <div class="card" style="width: 18rem;">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A third item</li>
-        </ul> */}
+colorChanges();
+let refresher = setInterval(colorChanges, 2000)
+// accessing the key of each time block so that the value gets displayed as the saved text upon reload
+$('#hour-9 .text').val(localStorage.getItem('hour-9'));
+$('#hour-10 .text').val(localStorage.getItem('hour-10'))
+$('#hour-11 .text').val(localStorage.getItem('hour-11'))
+$('#hour-12 .text').val(localStorage.getItem('hour-12'))
+$('#hour-13 .text').val(localStorage.getItem('hour-13'))
+$('#hour-14 .text').val(localStorage.getItem('hour-14'))
+$('#hour-15 .text').val(localStorage.getItem('hour-15'))
+$('#hour-16 .text').val(localStorage.getItem('hour-16'))
+$('#hour-17 .text').val(localStorage.getItem('hour-17'))
+})
