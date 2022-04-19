@@ -4,7 +4,7 @@
 
 I present to you, a daily planner. This planner was created using mostly JQuery and JavaScript, along with Bootstrap, CSS, and HTML. The current time and date is displayed using Moment. Hours featured are 9am-5pm, and are color coded based on the current time of day: gray for past, red for present, and green for the future. The text area is where any tasks may be entered and saved on your computer's local storage, allowing you to recall tasks after refreshing the page.  As my knowledge of javascript increase I plan on adding more features. 
 
-![Daily Planner](https://sophtron5000.github.io/daily-planner/)
+[Daily Planner](https://sophtron5000.github.io/daily-planner/)
  
 ## Usage
 
